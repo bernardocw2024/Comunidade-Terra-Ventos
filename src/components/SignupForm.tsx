@@ -19,9 +19,9 @@ export default function SignupForm({
   const { t } = useLanguage();
 
   const [formData, setFormData] = useState({
-    name: "", // ajustado para RD
+    name: "",
     email: "",
-    mobile_phone: "", // ajustado para RD
+    mobile_phone: "",
     paisEstado: "",
     faixaInvestimento: "",
     interessePrincipal: "",
@@ -80,7 +80,24 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
     };
 
     try {
+      // ⛔ 1 — Envia Email via EmailJS
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      // 🚀 2 — Envia Lead para o RD Station Marketing
+      if (typeof window !== "undefined" && (window as any).RdIntegration) {
+        (window as any).RdIntegration.post({
+          name: formData.name,
+          email: formData.email,
+          mobile_phone: formData.mobile_phone,
+          country: formData.paisEstado,
+          investment_range: getInvestmentRange(formData.faixaInvestimento),
+          main_interest: getMainInterest(formData.interessePrincipal),
+          traffic_source: "Comunidade Terra Ventos",
+          cf_origem_do_lead: "Comunidade Terra Ventos",
+        });
+      }
+
+      // UI de sucesso
       setSubmitStatus("success");
 
       setTimeout(() => {
@@ -128,26 +145,16 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
 
   return (
     <div className={`w-full max-w-2xl mx-auto ${className}`}>
-      {/* HEADER OPCIONAL */}
       {showHeader && (
         <div className="text-center mb-8">
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-500 mb-6 font-breathing"
+            className="text-4xl md:text-5xl font-bold text-primary-500 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
           >
             {t("signup.title")}
           </motion.h2>
-
-          <motion.p
-            className="text-lg text-black font-bold mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.2 }}
-          >
-            {t("signup.subtitle")}
-          </motion.p>
         </div>
       )}
 
@@ -157,7 +164,6 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.4 }}
       >
-        {/* MENSAGENS DE SUCESSO/ERRO */}
         {submitStatus === "success" && (
           <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
             <p className="text-green-700 font-medium">{t("signup.success")}</p>
@@ -170,16 +176,14 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
           </div>
         )}
 
-        {/* FORMULÁRIO */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* CAMPO OCULTO — ORIGEM DO LEAD */}
           <input
             type="hidden"
             name="traffic_source"
             value="Comunidade Terra Ventos"
           />
 
-          {/* Nome e Email */}
+          {/* Nome + Email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="block text-sm font-semibold">
@@ -212,7 +216,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
             </div>
           </div>
 
-          {/* Telefone e País */}
+          {/* Telefone + País */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
@@ -250,7 +254,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
             </div>
           </div>
 
-          {/* Faixa de investimento e interesse */}
+          {/* Faixa de investimento + Interesse */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
@@ -320,7 +324,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
             </label>
           </div>
 
-          {/* Botão de envio */}
+          {/* Botão */}
           <div className="text-center">
             <motion.button
               type="submit"
