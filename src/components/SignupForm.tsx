@@ -179,7 +179,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
             type="hidden"
-            name="traffic_source"
+            name="origem_do_lead"
             value="Comunidade Terra Ventos"
           />
 
