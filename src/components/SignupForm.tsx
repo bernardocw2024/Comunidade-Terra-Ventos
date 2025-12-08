@@ -91,9 +91,17 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
           mobile_phone: formData.mobile_phone,
           country: formData.paisEstado,
           investment_range: getInvestmentRange(formData.faixaInvestimento),
-          main_interest: getMainInterest(formData.interessePrincipal), // FORÇA O CAMPO ORIGEM DO LEAD (Substitui o rastreamento automático do pixel)
-          traffic_source: "Comunidade Terra Ventos", // O campo "identificador" é para o nome do formulário que gerou a conversão
-          identificador: "Formulário Comunidade Terra Ventos", // Campo customizado opcional
+          main_interest: getMainInterest(formData.interessePrincipal),
+
+          // **Ajuste:** Substitua traffic_source pelo c_utmz
+          // c_utmz: "Origem|Mídia|Campanha|Conteúdo|Termo"
+          // Use o formato abaixo para forçar a Origem
+          c_utmz:
+            "utm_source=Comunidade&utm_medium=Proprio&utm_campaign=TerraVentos",
+
+          // Opcional: Se quiser que o nome do formulário apareça nos detalhes da conversão
+          identificador: "Formulário-Comunidade-TV",
+          // Mantenha seu campo customizado para backup, se quiser
           cf_origem_do_lead: "Comunidade Terra Ventos",
         });
       }
