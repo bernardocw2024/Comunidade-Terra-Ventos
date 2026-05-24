@@ -28,12 +28,14 @@ export default function SolutionSection() {
 
   // Função para scroll suave até o formulário
   const scrollToForm = () => {
-    const formSection = document.getElementById("signup-section");
+    const formSection = document.getElementById("hero-form");
     if (formSection) {
       formSection.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -109,10 +111,8 @@ export default function SolutionSection() {
             {t("solution.connections.description")}
           </motion.p>
 
-          <motion.a
-            href="https://chat.whatsapp.com/IRDTyn0rKIXLVGQNqPkzQ8"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={scrollToForm}
             className="bg-accent-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-accent-600 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 font-avenir cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +126,7 @@ export default function SolutionSection() {
             whileTap={{ scale: 0.95 }}
           >
             {t("solution.see.how")}
-          </motion.a>
+          </motion.button>
         </div>
       </div>
     </motion.section>

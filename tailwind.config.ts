@@ -35,16 +35,16 @@ const config: Config = {
           900: "#1A2229", // Azul acinzentado quase preto
         },
         accent: {
-          50: "#CCBDAA", // Bege
-          100: "#D4C4A8", // Bege claro
-          200: "#B8A085", // Bege médio
-          300: "#A68B6F", // Bege escuro
-          400: "#947659", // Bege mais escuro
-          500: "#CCBDAA", // Bege principal
-          600: "#B8A085", // Bege escuro
-          700: "#A68B6F", // Bege mais escuro
-          800: "#947659", // Bege muito escuro
-          900: "#826543", // Bege quase marrom
+          50: "#F5EDE3",  // Bege muito claro
+          100: "#E8D9C5", // Bege claro
+          200: "#D9C4A8", // Bege médio claro
+          300: "#C4A07A", // Bege médio
+          400: "#A87D52", // Âmbar médio
+          500: "#8B6B3D", // Âmbar escuro – CTA principal (contraste alto com branco)
+          600: "#75592F", // Âmbar mais escuro – hover
+          700: "#5E4523", // Marrom âmbar
+          800: "#473318", // Marrom escuro
+          900: "#30220E", // Quase preto marrom
           950: "#87908E", // Cinza esverdeado
         },
         neutral: {

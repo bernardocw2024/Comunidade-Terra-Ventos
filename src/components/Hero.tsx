@@ -8,6 +8,7 @@ import ResizeLoading from "./ResizeLoading";
 import { useResizeLoading } from "../hooks/useResizeLoading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Logo from "./Logo";
+import SignupForm from "./SignupForm";
 
 // Interface para as props do componente Hero
 interface HeroProps {
@@ -224,23 +225,32 @@ export default function Hero({ onContactClick }: HeroProps) {
           )}
         </div>
 
-        {/* Overlay claro para melhorar a visibilidade do texto */}
-        <div className="absolute inset-0 bg-black/5 z-10"></div>
+        {/* === OVERLAYS PREMIUM === */}
+        {/* Escurecimento base sutil */}
+        <div className="absolute inset-0 bg-black/30 z-10"></div>
 
-        {/* Gradiente sutil para melhorar a legibilidade do texto */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/2 via-transparent to-black/8 z-15"></div>
+        {/* Desktop: gradiente escuro da esquerda cobrindo ~60% da largura */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"></div>
+
+        {/* Mobile: vinheta de cima e de baixo para garantir legibilidade */}
+        <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70 z-10"></div>
+
+        {/* Vinheta lateral esquerda extra para o texto */}
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black/40 to-transparent z-10"></div>
 
         {/* Container principal do conteúdo */}
-        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex items-center justify-center py-8 md:py-0">
-          <div className="text-center max-w-4xl mx-auto w-full">
+        <div id="hero-form" className="relative z-30 w-full flex items-center justify-center min-h-screen">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-28 lg:py-0 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+            {/* Esquerda: Texto */}
             <motion.div
-              className="text-white space-y-16"
+              className="text-white space-y-6 lg:w-1/2 text-center lg:text-left w-full"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <motion.h1
-                className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight font-breathing mb-1"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight font-breathing"
+                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -249,7 +259,7 @@ export default function Hero({ onContactClick }: HeroProps) {
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
               >
-                <div className="space-y-6 sm:space-y-8 md:space-y-12">
+                <div className="space-y-2 sm:space-y-4">
                   <div className="text-white font-breathing w-full">
                     {t("signup.title")}
                   </div>
@@ -259,8 +269,9 @@ export default function Hero({ onContactClick }: HeroProps) {
                 </div>
               </motion.h1>
 
-              <motion.h2
-                className="text-white font-bold leading-relaxed mb-12 mt-12 sm:mb-16 sm:mt-16 md:mb-16 md:mt-24 max-w-2xl mx-auto"
+              <motion.div
+                className="text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0"
+                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.9)" }}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -269,115 +280,56 @@ export default function Hero({ onContactClick }: HeroProps) {
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
               >
-                <div className="space-y-1 text-center">
-                  <div className="text-lg sm:text-xl md:text-2xl font-semibold">
-                    {t("signup.subtitle.line1")}.
-                  </div>
-                  <div className="text-base sm:text-lg md:text-lg font-medium">
-                    {t("signup.subtitle.line2")},
-                  </div>
-                  <div className="text-sm sm:text-base md:text-base">
-                    {t("signup.subtitle.line3")}.
-                  </div>
-                </div>
-              </motion.h2>
-
-              <motion.div
-                className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center mt-16 sm:mt-20 md:mt-32 w-full"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 1.6,
-                  duration: 1.2,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-              >
-                <motion.a
-                  href="https://chat.whatsapp.com/IRDTyn0rKIXLVGQNqPkzQ8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-accent-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-avenir w-full sm:w-auto"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {t("hero.cta")}
-                </motion.a>
-                <motion.a
-                  href="#por-que-fazer-parte"
-                  className="border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-white/10 transition-all duration-300 backdrop-blur-sm font-avenir w-full sm:w-auto"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {t("hero.discover")}
-                </motion.a>
+                <p className="text-base sm:text-lg md:text-xl font-semibold mb-1">
+                  {t("signup.subtitle.line1")}.
+                </p>
+                <p className="text-sm sm:text-base md:text-lg font-medium opacity-90">
+                  {t("signup.subtitle.line2")},
+                </p>
+                <p className="text-xs sm:text-sm md:text-base opacity-80">
+                  {t("signup.subtitle.line3")}.
+                </p>
               </motion.div>
+
+              {/* Trust bar: mini-stats embutidos abaixo do texto */}
+              <motion.div
+                className="flex flex-row items-center justify-center lg:justify-start gap-6 pt-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl font-bold text-accent-500" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>500+</div>
+                  <div className="text-xs text-white/70 font-medium">Investidores</div>
+                </div>
+                <div className="w-px h-8 bg-white/25"></div>
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl font-bold text-accent-500" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>{t("stats.value")}</div>
+                  <div className="text-xs text-white/70 font-medium">{t("stats.volume")}</div>
+                </div>
+                <div className="w-px h-8 bg-white/25"></div>
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl font-bold text-accent-500" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>100%</div>
+                  <div className="text-xs text-white/70 font-medium">Curadoria jurídica</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Direita: Formulário */}
+            <motion.div
+              className="w-full lg:w-1/2 max-w-md lg:max-w-lg mx-auto lg:mx-0 flex-shrink-0"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: 1.6,
+                duration: 1.2,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
+              <SignupForm showHeader={false} className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6" />
             </motion.div>
           </div>
         </div>
-
-        {/* Estatísticas flutuantes - Ocultas no mobile para evitar sobreposição */}
-        <motion.div
-          className="hidden lg:block absolute top-8 right-8 bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20"
-          initial={{ opacity: 0, scale: 0.8, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          <div className="text-center text-white">
-            <div className="text-3xl font-bold text-accent-500">500+</div>
-            <div className="text-sm text-white/80">Investidores Ativos</div>
-          </div>
-        </motion.div>
-
-        {/* Segunda estatística flutuante */}
-        <motion.div
-          className="hidden lg:block absolute bottom-8 left-8 bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20"
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          <div className="text-center text-white">
-            <div className="text-3xl font-bold text-accent-500">
-              {t("stats.value")}
-            </div>
-            <div className="text-sm text-white/80">{t("stats.volume")}</div>
-          </div>
-        </motion.div>
-
-        {/* Elementos decorativos flutuantes - Ocultos no mobile */}
-        <motion.div
-          className="hidden lg:block absolute top-1/4 left-8 w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center shadow-lg"
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          whileHover={{ scale: 1.1, rotate: 10 }}
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        </motion.div>
-
-        {/* Segundo elemento decorativo flutuante */}
-        <motion.div
-          className="hidden lg:block absolute bottom-1/4 right-8 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm"
-          initial={{ scale: 0, rotate: 180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          whileHover={{ scale: 1.1, rotate: -10 }}
-        >
-          <svg
-            className="w-5 h-5 text-white"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-          </svg>
-        </motion.div>
       </section>
     </>
   );

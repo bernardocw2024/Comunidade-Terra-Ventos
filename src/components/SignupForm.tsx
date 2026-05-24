@@ -159,7 +159,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
       )}
 
       <motion.div
-        className="bg-white rounded-2xl shadow-2xl p-8"
+        className="bg-white rounded-2xl shadow-2xl p-6 md:p-8"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.4 }}
@@ -184,9 +184,9 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
           />
 
           {/* Nome + Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold">
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-1">
                 {t("signup.name")} *
               </label>
               <input
@@ -196,12 +196,12 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border rounded-lg text-black"
+                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-1">
                 {t("signup.email")} *
               </label>
               <input
@@ -211,18 +211,15 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border rounded-lg text-black"
+                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
               />
             </div>
           </div>
 
           {/* Telefone + País */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="mobile_phone"
-                className="block text-sm font-semibold"
-              >
+              <label htmlFor="mobile_phone" className="block text-sm font-semibold text-gray-800 mb-1">
                 {t("signup.phone")} *
               </label>
               <input
@@ -232,15 +229,12 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
                 value={formData.mobile_phone}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border rounded-lg text-black"
+                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="paisEstado"
-                className="block text-sm font-semibold"
-              >
+              <label htmlFor="paisEstado" className="block text-sm font-semibold text-gray-800 mb-1">
                 {t("signup.country")}
               </label>
               <input
@@ -249,18 +243,15 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
                 name="paisEstado"
                 value={formData.paisEstado}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border rounded-lg text-black"
+                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
               />
             </div>
           </div>
 
           {/* Faixa de investimento + Interesse */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="faixaInvestimento"
-                className="block text-sm font-semibold"
-              >
+              <label htmlFor="faixaInvestimento" className="block text-sm font-semibold text-gray-800 mb-1">
                 {t("signup.budget")} *
               </label>
               <select
@@ -269,7 +260,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
                 value={formData.faixaInvestimento}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border rounded-lg text-black"
+                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
               >
                 <option value="">{t("signup.select")}</option>
                 <option value="up100k">{t("signup.range.up100k")}</option>
@@ -281,10 +272,7 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
             </div>
 
             <div>
-              <label
-                htmlFor="interessePrincipal"
-                className="block text-sm font-semibold"
-              >
+              <label htmlFor="interessePrincipal" className="block text-sm font-semibold text-gray-800 mb-1">
                 {t("signup.interest")} *
               </label>
               <select
@@ -293,15 +281,11 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
                 value={formData.interessePrincipal}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border rounded-lg text-black"
+                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
               >
                 <option value="">{t("signup.select")}</option>
-                <option value="investment">
-                  {t("signup.option.investment")}
-                </option>
-                <option value="lifestyle">
-                  {t("signup.option.lifestyle")}
-                </option>
+                <option value="investment">{t("signup.option.investment")}</option>
+                <option value="lifestyle">{t("signup.option.lifestyle")}</option>
                 <option value="kitesurf">{t("signup.option.kitesurf")}</option>
                 <option value="tourism">{t("signup.option.tourism")}</option>
                 <option value="business">{t("signup.option.business")}</option>
@@ -317,19 +301,19 @@ Data/Hora: ${new Date().toLocaleString("pt-BR")}
               name="aceitoComunicacoes"
               checked={formData.aceitoComunicacoes}
               onChange={handleInputChange}
-              className="mt-1 h-4 w-4 rounded border-gray-300"
+              className="mt-1 h-4 w-4 rounded border-gray-400 text-accent-500 focus:ring-accent-500 flex-shrink-0"
             />
-            <label htmlFor="aceitoComunicacoes" className="ml-3 text-sm">
+            <label htmlFor="aceitoComunicacoes" className="ml-3 text-sm text-gray-700 font-medium leading-snug">
               {t("signup.accept")}
             </label>
           </div>
 
           {/* Botão */}
-          <div className="text-center">
+          <div className="text-center pt-1">
             <motion.button
               type="submit"
               disabled={isSubmitting || !formData.aceitoComunicacoes}
-              className="bg-secondary-700 hover:bg-secondary-800 disabled:bg-gray-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+              className="w-full bg-accent-500 hover:bg-accent-600 disabled:bg-gray-300 disabled:text-gray-500 text-white px-8 py-3 rounded-lg text-base font-semibold transition-colors shadow-md"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
