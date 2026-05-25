@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ProblemSection from "@/components/ProblemSection";
-import SolutionSection from "@/components/SolutionSection";
-import FounderSection from "@/components/FounderSection";
-import FAQSection from "@/components/FAQSection";
-import SignupSection from "@/components/SignupSection";
-import Footer from "@/components/Footer";
+// import ProblemSection from "@/components/ProblemSection";
+// import SolutionSection from "@/components/SolutionSection";
+// import FounderSection from "@/components/FounderSection";
+// import FAQSection from "@/components/FAQSection";
+// import SignupSection from "@/components/SignupSection";
+// import Footer from "@/components/Footer";
 import SignupModal from "@/components/SignupModal";
 import DynamicMeta from "@/components/DynamicMeta";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -28,14 +28,14 @@ export default function Home() {
       transition={{ duration: 0.5 }}
     >
       <DynamicMeta />
-      <Navbar onContactClick={openModal} />
+      {/* <Navbar onContactClick={openModal} /> */}
       <Hero onContactClick={openModal} />
-      <ProblemSection />
-      <SolutionSection />
-      <FounderSection />
-      <FAQSection />
-      <SignupSection />
-      <Footer />
+      {/* <ProblemSection /> */}
+      {/* <SolutionSection /> */}
+      {/* <FounderSection /> */}
+      {/* <FAQSection /> */}
+      {/* <SignupSection /> */}
+      {/* <Footer /> */}
 
       <SignupModal isOpen={isModalOpen} onClose={closeModal} />
       <WhatsAppButton />

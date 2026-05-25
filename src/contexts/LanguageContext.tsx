@@ -90,16 +90,16 @@ const translations = {
     "whatsapp.talk": "Fale com nossa equipe",
 
     // Signup Modal
-    "signup.title": "Comunidade",
-    "signup.title2": "Terra Ventos",
+    "signup.title": "Terra Ventos Comunidade,",
+    "signup.title2": "Vento a Favor.",
     "signup.subtitle":
-      "Junte-se a uma rede exclusiva de investidores e atletas. E tenha acesso antecipado a oportunidades imobiliárias, curadoria jurídica e um lifestyle conectado ao vento e ao mar.",
+      "Uma comunidade para quem busca investir na costa com segurança, bem-estar e um novo estilo de vida.",
     "signup.subtitle.line1":
-      "Junte-se a uma rede exclusiva de investidores e atletas",
+      "Os ventos do nordeste, casas e terrenos costeiros:",
     "signup.subtitle.line2":
-      "E tenha acesso antecipado a oportunidades imobiliárias",
+      "você construindo o futuro do litoral brasileiro.",
     "signup.subtitle.line3":
-      "curadoria jurídica e um lifestyle conectado ao vento e ao mar",
+      "Uma comunidade para quem busca investir na costa com segurança, bem-estar e um novo estilo de vida.",
     "signup.name": "Nome completo",
     "signup.email": "E-mail",
     "signup.phone": "Telefone/WhatsApp",
@@ -257,16 +257,16 @@ const translations = {
     "whatsapp.talk": "Talk to our team",
 
     // Signup Modal
-    "signup.title": "Community",
-    "signup.title2": "Terra Ventos",
+    "signup.title": "Terra Ventos Community,",
+    "signup.title2": "Wind in Your Favor.",
     "signup.subtitle":
-      "Join an exclusive network of investors, athletes and lovers of the northeastern coast. And get early access to real estate opportunities, legal curation and a lifestyle connected to wind and sea.",
+      "A community for those who seek to invest on the coast with safety, well-being and a new lifestyle.",
     "signup.subtitle.line1":
-      "Join an exclusive network of investors and athletes",
+      "The northeastern winds, coastal homes and land:",
     "signup.subtitle.line2":
-      "And get early access to real estate opportunities",
+      "you building the future of the Brazilian coast.",
     "signup.subtitle.line3":
-      "legal curation and a lifestyle connected to wind and sea",
+      "A community for those who seek to invest on the coast with safety, well-being and a new lifestyle.",
     "signup.name": "Full name",
     "signup.email": "Email",
     "signup.phone": "Phone/WhatsApp",
@@ -423,16 +423,16 @@ const translations = {
     "whatsapp.talk": "Habla con nuestro equipo",
 
     // Signup Modal
-    "signup.title": "Comunidad",
-    "signup.title2": "Terra Ventos",
+    "signup.title": "Comunidad Terra Ventos,",
+    "signup.title2": "Viento a Favor.",
     "signup.subtitle":
-      "Únete a una red exclusiva de inversionistas, atletas y amantes de la costa noreste. Y ten acceso anticipado a oportunidades inmobiliarias, curaduría jurídica y un estilo de vida conectado al viento y al mar.",
+      "Una comunidad para quienes buscan invertir en la costa con seguridad, bienestar y un nuevo estilo de vida.",
     "signup.subtitle.line1":
-      "Únete a una red exclusiva de inversionistas y atletas",
+      "Los vientos del noreste, casas y terrenos costeros:",
     "signup.subtitle.line2":
-      "Y ten acceso anticipado a oportunidades inmobiliarias",
+      "tú construyendo el futuro del litoral brasileño.",
     "signup.subtitle.line3":
-      "curaduría jurídica y un estilo de vida conectado al viento y al mar",
+      "Una comunidad para quienes buscan invertir en la costa con seguridad, bienestar y un nuevo estilo de vida.",
     "signup.name": "Nombre completo",
     "signup.email": "Correo electrónico",
     "signup.phone": "Teléfono/WhatsApp",

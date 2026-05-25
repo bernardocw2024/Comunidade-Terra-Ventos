@@ -9,6 +9,7 @@ import { useResizeLoading } from "../hooks/useResizeLoading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Logo from "./Logo";
 import SignupForm from "./SignupForm";
+import LanguageSelector from "./LanguageSelector";
 
 // Interface para as props do componente Hero
 interface HeroProps {
@@ -118,6 +119,11 @@ export default function Hero({ onContactClick }: HeroProps) {
 
       {/* Seção principal do Hero */}
       <section className="relative min-h-screen flex items-center w-full max-w-full overflow-hidden">
+
+        {/* Seletor de idioma — canto superior direito */}
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
+          <LanguageSelector />
+        </div>
         {/* Container do vídeo de fundo */}
         <div className="absolute inset-0 w-full h-full">
           {/* Fundo preto como fallback caso o vídeo não carregue */}
@@ -249,7 +255,6 @@ export default function Hero({ onContactClick }: HeroProps) {
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight font-breathing"
                 style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -259,13 +264,25 @@ export default function Hero({ onContactClick }: HeroProps) {
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
               >
-                <div className="space-y-2 sm:space-y-4">
-                  <div className="text-white font-breathing w-full">
-                    {t("signup.title")}
-                  </div>
-                  <div className="text-white font-breathing">
-                    {t("signup.title2")}
-                  </div>
+                {/* Linha 1: "Terra Ventos Comunidade," — mais compacta para caber */}
+                <div
+                  className="font-breathing text-white block leading-none"
+                  style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
+                >
+                  {t("signup.title")}
+                </div>
+
+                {/* Linha 2: "Vento a Favor." — Inter regular, sem quebra */}
+                <div
+                  className="text-white block leading-none mt-2 sm:mt-3 font-normal tracking-tight"
+                  style={{
+                    fontSize: "clamp(2rem, 7vw, 6rem)",
+                    fontFamily: "'Inter', system-ui, sans-serif",
+                    fontWeight: 400,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {t("signup.title2")}
                 </div>
               </motion.h1>
 
@@ -281,13 +298,13 @@ export default function Hero({ onContactClick }: HeroProps) {
                 }}
               >
                 <p className="text-base sm:text-lg md:text-xl font-semibold mb-1">
-                  {t("signup.subtitle.line1")}.
+                  {t("signup.subtitle.line1")}
                 </p>
-                <p className="text-sm sm:text-base md:text-lg font-medium opacity-90">
-                  {t("signup.subtitle.line2")},
+                <p className="text-base sm:text-lg md:text-xl font-semibold mb-3">
+                  {t("signup.subtitle.line2")}
                 </p>
-                <p className="text-xs sm:text-sm md:text-base opacity-80">
-                  {t("signup.subtitle.line3")}.
+                <p className="text-sm sm:text-base md:text-lg font-medium opacity-80">
+                  {t("signup.subtitle.line3")}
                 </p>
               </motion.div>
 
@@ -312,6 +329,24 @@ export default function Hero({ onContactClick }: HeroProps) {
                   <div className="text-2xl font-bold text-accent-500" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>100%</div>
                   <div className="text-xs text-white/70 font-medium">Curadoria jurídica</div>
                 </div>
+              </motion.div>
+
+              {/* Tags de nicho */}
+              <motion.div
+                className="flex flex-wrap items-center gap-2 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.7, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                {["imóveis", "kite", "wingfoil", "wellness", "lifestyle & sports"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs px-3 py-1 rounded-full border border-white/25 bg-white/10 text-white/70 backdrop-blur-sm font-medium tracking-widest uppercase"
+                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </motion.div>
             </motion.div>
 
