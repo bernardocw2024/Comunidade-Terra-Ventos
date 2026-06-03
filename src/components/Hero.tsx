@@ -317,7 +317,7 @@ export default function Hero({ onContactClick }: HeroProps) {
               >
                 <div className="text-center lg:text-left">
                   <div className="text-xl sm:text-2xl font-bold text-accent-500" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>500+</div>
-                  <div className="text-[10px] sm:text-xs text-white/70 font-medium">Investidores</div>
+                  <div className="text-[10px] sm:text-xs text-white/70 font-medium">{t("hero.stat.investors")}</div>
                 </div>
                 <div className="w-px h-6 sm:h-8 bg-white/25"></div>
                 <div className="text-center lg:text-left">
@@ -327,7 +327,7 @@ export default function Hero({ onContactClick }: HeroProps) {
                 <div className="w-px h-6 sm:h-8 bg-white/25"></div>
                 <div className="text-center lg:text-left">
                   <div className="text-xl sm:text-2xl font-bold text-accent-500" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>100%</div>
-                  <div className="text-[10px] sm:text-xs text-white/70 font-medium leading-tight max-w-[60px] sm:max-w-none mx-auto">Curadoria jurídica</div>
+                  <div className="text-[10px] sm:text-xs text-white/70 font-medium leading-tight max-w-[60px] sm:max-w-none mx-auto">{t("hero.stat.legal")}</div>
                 </div>
               </motion.div>
 
@@ -338,7 +338,7 @@ export default function Hero({ onContactClick }: HeroProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.7, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                {["imóveis", "kite", "wingfoil", "wellness", "lifestyle"].map((tag) => (
+                {[t("hero.tag.properties"), "kite", "wingfoil", "wellness", "lifestyle"].map((tag) => (
                   <span
                     key={tag}
                     className="text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border border-white/25 bg-white/10 text-white/70 backdrop-blur-sm font-medium tracking-widest uppercase"

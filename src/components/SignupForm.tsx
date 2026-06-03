@@ -56,6 +56,20 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 }
 
+/** Validates name: min 2 chars, letters/spaces/hyphens/accents only */
+function isValidName(name: string): boolean {
+  const trimmed = name.trim();
+  if (trimmed.length < 2) return false;
+  return /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\-']+$/.test(trimmed);
+}
+
+/** Validates phone: only digits/+/spaces/dashes, min 7 digits */
+function isValidPhone(value: string): boolean {
+  if (!/^[\d\s\+\-\(\)]+$/.test(value) && value.length > 0) return false;
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 7;
+}
+
 export default function SignupForm({
   onSubmit,
   showHeader = false,
@@ -82,6 +96,8 @@ export default function SignupForm({
 
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [checkboxError, setCheckboxError] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -117,6 +133,12 @@ export default function SignupForm({
     if (name === "mobile_phone") {
       setPhoneError("");
     }
+    if (name === "name") {
+      setNameError("");
+    }
+    if (name === "aceitoComunicacoes") {
+      setCheckboxError("");
+    }
 
     setFormData((prev) => ({
       ...prev,
@@ -146,21 +168,54 @@ export default function SignupForm({
     }
   };
 
+  const handleNameBlur = () => {
+    if (formData.name && !isValidName(formData.name)) {
+      if (formData.name.trim().length < 2) {
+        setNameError("Name must be at least 2 characters.");
+      } else {
+        setNameError("Name must contain only letters, spaces, or hyphens.");
+      }
+    }
+  };
+
+  const handlePhoneBlur = () => {
+    if (formData.mobile_phone) {
+      const phoneDigits = formData.mobile_phone.replace(/\D/g, "");
+      if (phoneDigits.length < 7) {
+        setPhoneError("Invalid phone number. Enter at least 7 digits.");
+      }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validações client-side
+    // Client-side validations
     let hasError = false;
+
+    if (!isValidName(formData.name)) {
+      if (formData.name.trim().length < 2) {
+        setNameError("Name must be at least 2 characters.");
+      } else {
+        setNameError("Name must contain only letters, spaces, or hyphens.");
+      }
+      hasError = true;
+    }
 
     if (!isValidEmail(formData.email)) {
       setEmailError("E-mail inválido. Verifique se possui @ e domínio.");
       hasError = true;
     }
 
-    // Conta apenas dígitos do telefone digitado
+    // Count only digits from the typed phone number
     const phoneDigits = formData.mobile_phone.replace(/\D/g, "");
     if (phoneDigits.length < 7) {
-      setPhoneError("Telefone inválido. Digite pelo menos 7 dígitos.");
+      setPhoneError("Invalid phone number. Enter at least 7 digits.");
+      hasError = true;
+    }
+
+    if (!formData.aceitoComunicacoes) {
+      setCheckboxError("You must accept communications to proceed.");
       hasError = true;
     }
 
@@ -211,6 +266,7 @@ export default function SignupForm({
 
       setTimeout(() => {
         setSubmitStatus("idle");
+        setIsSubmitting(false);
         setFormData({
           name: "",
           email: "",
@@ -221,13 +277,16 @@ export default function SignupForm({
           regiaoInteresse: "",
           aceitoComunicacoes: false,
         });
+        setNameError("");
+        setEmailError("");
+        setPhoneError("");
+        setCheckboxError("");
         setSelectedCountry(COUNTRIES[0]);
         onSubmit?.();
       }, 3000);
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
       setSubmitStatus("error");
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -335,10 +394,20 @@ export default function SignupForm({
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
+                onBlur={handleNameBlur}
                 required
                 autoComplete="name"
-                className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
+                className={`w-full px-3 py-2.5 border rounded-lg text-gray-900 bg-white focus:ring-1 outline-none transition-colors ${
+                  nameError
+                    ? "border-red-400 focus:border-red-500 focus:ring-red-500"
+                    : "border-gray-400 focus:border-accent-500 focus:ring-accent-500"
+                }`}
               />
+              {nameError && (
+                <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+                  <span>&#9888;&#65039;</span> {nameError}
+                </p>
+              )}
             </div>
 
             <div>
@@ -456,6 +525,7 @@ export default function SignupForm({
                   name="mobile_phone"
                   value={formData.mobile_phone}
                   onChange={handlePhoneChange}
+                  onBlur={handlePhoneBlur}
                   required
                   autoComplete="tel"
                   inputMode="tel"
@@ -543,7 +613,7 @@ export default function SignupForm({
           {/* ── Região de interesse ── */}
           <div>
             <label htmlFor="regiaoInteresse" className="block text-sm font-semibold text-gray-800 mb-1">
-              Região de interesse
+              {t("signup.regionInterest")}
             </label>
             <select
               id="regiaoInteresse"
@@ -552,7 +622,7 @@ export default function SignupForm({
               onChange={handleInputChange}
               className="w-full px-3 py-2.5 border border-gray-400 rounded-lg text-gray-900 bg-white focus:border-accent-500 focus:ring-1 focus:ring-accent-500 outline-none transition-colors"
             >
-              <option value="">Selecione uma região</option>
+              <option value="">{t("signup.selectRegion")}</option>
               <option value="Tatajuba">Tatajuba</option>
               <option value="Bitupita">Bitupita</option>
               <option value="Prea">Prea</option>
@@ -574,19 +644,30 @@ export default function SignupForm({
               htmlFor="aceitoComunicacoes"
               className="ml-3 text-sm text-gray-700 font-medium leading-snug"
             >
-              {t("signup.accept")}
+              {t("signup.accept")} *
             </label>
           </div>
+          {checkboxError && (
+            <p className="mt-1 ml-7 text-xs text-red-600 flex items-center gap-1">
+              <span>&#9888;&#65039;</span> {checkboxError}
+            </p>
+          )}
 
           {/* ── Botão ── */}
           <div className="text-center pt-1">
             <motion.button
               type="submit"
-              disabled={isSubmitting || !formData.aceitoComunicacoes}
-              className="w-full bg-accent-500 hover:bg-accent-600 disabled:bg-gray-300 disabled:text-gray-500 text-white px-8 py-3 rounded-lg text-base font-semibold transition-colors shadow-md"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className="w-full bg-accent-500 hover:bg-accent-600 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed text-white px-8 py-3 rounded-lg text-base font-semibold transition-colors shadow-md flex items-center justify-center gap-2"
+              whileHover={isSubmitting ? {} : { scale: 1.02 }}
+              whileTap={isSubmitting ? {} : { scale: 0.98 }}
             >
+              {isSubmitting && (
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              )}
               {isSubmitting ? t("signup.submitting") : t("signup.join")}
             </motion.button>
           </div>

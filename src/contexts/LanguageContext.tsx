@@ -131,6 +131,11 @@ const translations = {
     "signup.range.500k1m": "R$ 500.000 - R$ 1.000.000",
     "signup.range.1m5m": "R$ 1.000.000 - R$ 5.000.000",
     "signup.range.above5m": "Acima de R$ 5.000.000",
+    "signup.regionInterest": "Região de interesse",
+    "signup.selectRegion": "Selecione uma região",
+    "hero.stat.investors": "Investidores",
+    "hero.stat.legal": "Curadoria jurídica",
+    "hero.tag.properties": "imóveis",
 
     // FAQ Section
     "faq.question1": "Como funciona a comunidade Terra Ventos?",
@@ -297,6 +302,11 @@ const translations = {
     "signup.range.500k1m": "$90,000 - $180,000",
     "signup.range.1m5m": "$180,000 - $900,000",
     "signup.range.above5m": "Above $900,000",
+    "signup.regionInterest": "Region of interest",
+    "signup.selectRegion": "Select a region",
+    "hero.stat.investors": "Investors",
+    "hero.stat.legal": "Legal curation",
+    "hero.tag.properties": "properties",
 
     // FAQ Section
     "faq.question1": "How does the Terra Ventos community work?",
@@ -463,6 +473,11 @@ const translations = {
     "signup.range.500k1m": "$90,000 - $180,000",
     "signup.range.1m5m": "$180,000 - $900,000",
     "signup.range.above5m": "Más de $900,000",
+    "signup.regionInterest": "Región de interés",
+    "signup.selectRegion": "Selecciona una región",
+    "hero.stat.investors": "Inversores",
+    "hero.stat.legal": "Curaduría jurídica",
+    "hero.tag.properties": "inmuebles",
 
     // FAQ Section
     "faq.question1": "¿Cómo funciona la comunidad Terra Ventos?",
